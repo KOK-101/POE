@@ -95,6 +95,7 @@ public class KelebogilePart1 {
             System.out.println("\n--------------LOGIN------------- ");
          
          //if Login credentials are wrong we loop using a while loop and a boolean 
+         // boolean to help make the loop a success
          
             boolean loginSuccessful = false;
             
