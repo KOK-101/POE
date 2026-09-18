@@ -38,7 +38,8 @@ public class KelebogilePart1 {
         
        Login check = new Login("","","","",""); 
         
-        
+     // Prompting the user and looping if conditions are not met
+     
         System.out.println("Enter your Username(Must contain an underscore and be less than 5 characters): ");
         userName = myInput.nextLine();
         while(!check.checkUserName(userName)){
@@ -85,7 +86,7 @@ public class KelebogilePart1 {
       
         System.out.println(register.registerUser());
         
-        
+     // Creating the Login   
         
         boolean registeredSuccessfully = register.checkUserName(userName)&& register.checkPasswordComplexity(passWord)&& register.checkCellPhoneNumber(cellNumber);
         
