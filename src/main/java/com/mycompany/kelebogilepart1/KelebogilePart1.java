@@ -34,7 +34,8 @@ public class KelebogilePart1 {
         System.out.println("Enter your Surname: ");
         surName = myInput.nextLine();
         
-        //Login object used to check
+     
+       //login object used to check 
         
        Login check = new Login("","","","",""); 
         
