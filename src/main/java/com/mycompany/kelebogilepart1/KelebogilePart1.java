@@ -53,7 +53,7 @@ public class KelebogilePart1 {
         System.out.println("Enter your Username(Must contain an underscore and be less than 5 characters): ");
         userName = myInput.nextLine();
         }
-        System.out.println("Username successfully captured");
+        System.out.println("Username successfully captured :)!!!");
         
      //passWord input looping
      
@@ -68,7 +68,7 @@ public class KelebogilePart1 {
         System.out.println("Enter your Password(Must contain 8+ character,a capital letter,a number and a special character): ");
         passWord = myInput.nextLine();
         }
-        System.out.println("Password successfully captured");
+        System.out.println("Password successfully captured :)!!!");
       
       //cellphone number input looping
       
@@ -82,7 +82,7 @@ public class KelebogilePart1 {
         System.out.println("Enter your Cellphone Number e.g.(+27956891234): ");
         cellNumber = myInput.nextLine();
         }
-        System.out.println("Cell phone number successfully added");
+        System.out.println("Cell phone number successfully added :)!!!");
         
         //This is the real login object
         
