@@ -25,7 +25,7 @@ public class KelebogilePart1 {
         String passWord;
         String cellNumber;
        
-        
+        //Prompting user to register an account 
         
         System.out.println("\n----------Registration----------");
         
@@ -86,10 +86,12 @@ public class KelebogilePart1 {
       
         System.out.println(register.registerUser());
         
-     // Creating the Login   
+     // boolean to make sure the inputs match  
         
         boolean registeredSuccessfully = register.checkUserName(userName)&& register.checkPasswordComplexity(passWord)&& register.checkCellPhoneNumber(cellNumber);
-        
+       
+     // Creating the Login 
+     
         if(registeredSuccessfully){
             
             System.out.println("\n--------------LOGIN------------- ");
