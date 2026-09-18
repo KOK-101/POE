@@ -4,7 +4,6 @@
 
 package com.mycompany.kelebogilepart1;
 import java.util.Scanner;
-import java.util.regex.*;
 
 /**
  *
@@ -13,89 +12,110 @@ import java.util.regex.*;
 public class KelebogilePart1 {
 
     public static void main(String[] args) {
-        // Scanner 
+        
+        // Scanner.
         
         Scanner myInput = new Scanner(System.in);
         
-        //Declarations
+        //Declarations.
         
         String name;
         String surName;
         String userName;
         String passWord;
         String cellNumber;
+       
         
-        //Prompting the user to register
         
-        System.out.println("Enter your First Name: ");
-        name = myInput.next();
+        System.out.println("\n----------Registration----------");
+        
+        System.out.println("\nEnter your First Name: ");
+        name = myInput.nextLine();
         System.out.println("Enter your Surname: ");
-        surName = myInput.next();
+        surName = myInput.nextLine();
+        
+        //Login object used to check
+        
+       Login check = new Login("","","","",""); 
+        
+        
         System.out.println("Enter your Username(Must contain an underscore and be less than 5 characters): ");
-        userName = myInput.next();
+        userName = myInput.nextLine();
+        while(!check.checkUserName(userName)){
+         
+        System.out.println("Username is not correctly formatted; "
+                   + "please ensure that your username contains an underscore"
+                   + "and is no more than five characters in length");
+        
+        System.out.println("Enter your Username(Must contain an underscore and be less than 5 characters): ");
+        userName = myInput.nextLine();
+        }
+        System.out.println("Username successfully captured");
+        
         System.out.println("Enter your Password(Must contain 8+ character,a capital letter,a number and a special character): ");
-        passWord = myInput.next();
-        System.out.println("Enter your Cellphone Number(+27): ");
-        cellNumber = myInput.next();
-        
-        // Displaying the conditions and results
-        
-       while(checkUserName(userName)){
+        passWord = myInput.nextLine();
+        while(!check.checkPasswordComplexity(passWord)){
+         
+        System.out.println("Password is not correctly formatted; "
+                   + "please ensure that your password contains at least eight characters"
+                   + "a capital letter, a number and a special character");
             
-            if(checkUserName(userName)){
-                System.out.println("Username succesfully captured.");
-            }else{
-                System.out.print("Username is not correctly formatted; "
-                        + "please ensure that your username contains an underscore"
-                        + "and is no more than five characters in length");
-            }      
+        System.out.println("Enter your Password(Must contain 8+ character,a capital letter,a number and a special character): ");
+        passWord = myInput.nextLine();
         }
-        while(checkPasswordComplexity(passWord)){
+        System.out.println("Password successfully captured");
+        
+        System.out.println("Enter your Cellphone Number e.g.(+27956891234): ");
+        cellNumber = myInput.nextLine();
+        while(!check.checkCellPhoneNumber(cellNumber)){
+    
+        System.out.println("Cell phone number incorrectly formatted "
+                   + "or does not contain international code");
             
-          if( checkPasswordComplexity(passWord)){
-                System.out.println("Password succesfully captured.");
-            }else{
-                System.out.print("Password is not correctly formatted; "
-                        + "please ensure that your password contains at least eight characters, "
-                        + "a capital letter, a number, and a special character");
-            }  
+        System.out.println("Enter your Cellphone Number e.g.(+27956891234): ");
+        cellNumber = myInput.nextLine();
         }
-        while(checkCellPhoneNumber(cellNumber)){
+        System.out.println("Cell phone number successfully added");
+        
+        //This is the real login object
+        
+        Login register = new Login(name, surName, userName, passWord, cellNumber);
+        
+        //Using the login object to register the account
+      
+        System.out.println(register.registerUser());
+        
+        
+        
+        boolean registeredSuccessfully = register.checkUserName(userName)&& register.checkPasswordComplexity(passWord)&& register.checkCellPhoneNumber(cellNumber);
+        
+        if(registeredSuccessfully){
             
-            if(checkCellPhoneNumber(cellNumber)){
-                System.out.println("Cell phone number succesfully added.");
-            }else{
-                System.out.print("Cell phone number is incorrectly formatted; "
-                        + "or does not contain international code");
+            System.out.println("\n--------------LOGIN------------- ");
+         
+         //if Login credentials are wrong we loop using a while loop and a boolean 
+         
+            boolean loginSuccessful = false;
+            
+            while(!loginSuccessful){
+            
+            System.out.println("\nEnter your username: ");
+            String enteredUsername = myInput.nextLine();
+            System.out.println("Enter your password: ");
+            String enteredPassword = myInput.nextLine();
+            
+          //Verifying credentials before print the success message 
+          
+            loginSuccessful = register.loginUser(enteredUsername, enteredPassword);
+            register.returnLoginStatus();
+            
+            System.out.println(register.returnLoginStatus());
             }
         }
-            
-    }
-    
-    //Methods for the conditions
-    
-     public static boolean checkUserName(String userName){
-             
-        boolean underScore = userName.contains("_");
-        boolean length = userName.length() <= 5;
-        
-        return underScore & length;
-    }
-    public static boolean checkPasswordComplexity(String passWord){
-        
-        boolean length = passWord.length() >= 8;
-        boolean capitalLetter = Pattern.compile("[A-Z]").matcher(passWord).find();
-        boolean isTheNumber = Pattern.compile("[0-9]").matcher(passWord).find();
-        boolean specialCharacter = Pattern.compile("[^a-zA-Z0-9]").matcher(passWord).find();
-        
-        return length & capitalLetter & isTheNumber & specialCharacter;
-    }
-    public static boolean checkCellPhoneNumber(String cellNumber){
-        
-        boolean phoneNumber = Pattern.matches("[^\\+27[0-9]{1,10}$]", cellNumber);
-                
-         return phoneNumber;
-    }
+        myInput.close();
+    }   
+}   
+   
    
         
- }
+ 
