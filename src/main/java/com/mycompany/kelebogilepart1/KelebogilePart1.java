@@ -25,7 +25,7 @@ public class KelebogilePart1 {
         String passWord;
         String cellNumber;
        
-        //Prompting user to register an account 
+        //Prompting user to register an account. 
         
         System.out.println("\n----------Registration----------");
         
@@ -35,11 +35,12 @@ public class KelebogilePart1 {
         surName = myInput.nextLine();
         
      
-       //login object used to check 
+       //login object used to check. 
         
        Login check = new Login("","","","",""); 
         
-     // Prompting the user and looping if conditions are not met
+     // Prompting the user and looping if conditions are not met.
+     //userName input looping
      
         System.out.println("Enter your Username(Must contain an underscore and be less than 5 characters): ");
         userName = myInput.nextLine();
@@ -54,6 +55,8 @@ public class KelebogilePart1 {
         }
         System.out.println("Username successfully captured");
         
+     //passWord input looping
+     
         System.out.println("Enter your Password(Must contain 8+ character,a capital letter,a number and a special character): ");
         passWord = myInput.nextLine();
         while(!check.checkPasswordComplexity(passWord)){
@@ -66,7 +69,9 @@ public class KelebogilePart1 {
         passWord = myInput.nextLine();
         }
         System.out.println("Password successfully captured");
-        
+      
+      //cellphone number input looping
+      
         System.out.println("Enter your Cellphone Number e.g.(+27956891234): ");
         cellNumber = myInput.nextLine();
         while(!check.checkCellPhoneNumber(cellNumber)){
