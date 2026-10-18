@@ -121,6 +121,16 @@ public class KelebogilePart1 {
             
             System.out.println(register.returnLoginStatus());
             }
+           
+            System.out.println("\n--------Welcome to QuickChat--------");
+            
+            int messageMax = 0;
+            boolean messageAmount = false;
+            
+            while(!messageAmount){
+                
+                System.out.print("\n How many messages do you want to enter?: ");
+            }
         }
         myInput.close();
     }   
