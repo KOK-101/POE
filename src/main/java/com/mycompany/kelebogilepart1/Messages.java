@@ -54,4 +54,15 @@ public class Messages {
         return "Message ID generated: " + messageID;
     }
     
+    public String checkRecipientNumber(){
+        
+        if (Login.checkCellPhoneNumber(recipient)){
+            return "Cellphone number succesfully captured :)";
+        }
+        
+        return "Cell phone number incorrectly formatted "
+                + "or does not contain international code";
+    }
+    
+    
 }
