@@ -49,4 +49,9 @@ public class Messages {
         return messageID != null && messageID.length() <= 10;
     }
     
+    public String getMessageIDStatus(){
+    
+        return "Message ID generated: " + messageID;
+    }
+    
 }
