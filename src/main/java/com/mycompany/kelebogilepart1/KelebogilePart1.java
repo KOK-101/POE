@@ -130,6 +130,7 @@ public class KelebogilePart1 {
             while(!messageAmount){
                 
                 System.out.print("\n How many messages do you want to enter?: ");
+                
             }
         }
         myInput.close();

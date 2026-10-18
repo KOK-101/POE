@@ -118,11 +118,54 @@ public class Messages {
         }
         
         StringBuilder sb = new StringBuilder();
-        for(Message m: sentMessages){
+        for(Messages m: sentMessages){
             sb.append(m.getDetails()).append("\n\n");
+        }
+        
+        return sb.toString().trim();
+    }
+    
+    public static int returnTotalMessages(){
+        
+        return numOfSentMessages;
+    }
+    
+    public boolean storeMessage(){
+        
+        storedMessages.add(this);
+        
+        StringBuilder json = new StringBuilder("[\n");
+        for (int i = 0; i < storedMessages.size(); i++){
+            
+            Messages m = storedMessages.get(i);
+            json.append(" {\n").append(" \"messageID\": \"")
+                    .append(escape(m.messageID)).append("\",\n")
+                   .append(" \"messageHash\": \"")
+                   .append(escape(m.messageHash)).append("\",\n")
+                   .append(" \"recipient\": \"")
+                   .append(escape(m.recipient)).append("\",\n")
+                   .append(" \"message\": \"")
+                   .append(escape(m.messageText)).append("\",\n")
+                   .append(" }")
+                   .append(i < storedMessages.size()-1 ? "," : "").append("\n");
+        }
+        
+        json.append("]");
+        
+        try (FileWriter writer = new FileWriter(jsonFile)){
+            writer.write(json.toString());
+            return true;
+        }
+        catch (IOException e){
+            System.out.println("Could not write to "+ jsonFile + ":" + e.getMessage());
+            return false;
         }
     }
     
+    private static String escape(String text){
+        
+        return text.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "\\r");
+    }
     
     
 }
