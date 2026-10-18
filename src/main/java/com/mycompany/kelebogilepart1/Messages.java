@@ -64,5 +64,15 @@ public class Messages {
                 + "or does not contain international code";
     }
     
-    
+    public String checkMessageLength(){
+        
+        int length = messageText == null ? 0: messageText.length();
+        
+        if(length <= maxCharacter){
+            return "Message ready to be send ";
+        }
+        
+        return "Message exceeds 250 characters by "+ (length - maxCharacter)
+                +", please reduce the number of characters ";
+    }
 }
