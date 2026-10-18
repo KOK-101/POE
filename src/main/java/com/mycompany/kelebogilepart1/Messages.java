@@ -91,30 +91,30 @@ public class Messages {
             case 1:
                 sentMessages.add(this);
                 numOfSentMessages++;
-                return " Message successfully sent :) ";
+                return "\n----- Message successfully sent :) -----";
                 
             case 2:
-                return " Press 0 to delete the message ";
+                return "Press 0 to delete the message ";
                 
             case 3:
                 storeMessage();
-                return " Message successfully stored :) ";
+                return "Message successfully stored :) ";
                
             default:
-                return " Your choice is invalid ";
+                return "Your choice is invalid ";
         }
     }
     
     public String getDetails(){
         
-        return " Message ID: " + messageID +"\n Message Hash: "+ messageHash
-                +"\n Recipient: "+ recipient +"\n Message: "+ messageText;
+        return "Message ID: " + messageID +"\nMessage Hash: "+ messageHash
+                +"\nRecipient: "+ recipient +"\nMessage: "+ messageText;
     }
     
     public static String printMessages(){
         
         if(sentMessages.isEmpty()){
-            return " No messages have been sent ";
+            return "No messages have been sent ";
         }
         
         StringBuilder sb = new StringBuilder();

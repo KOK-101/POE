@@ -129,7 +129,7 @@ public class KelebogilePart1 {
             
             while(!messageAmount){
                 
-                System.out.print("\n How many messages do you want to enter?: ");
+                System.out.print("\nHow many messages do you want to enter?: ");
                 try {
                     messageMax = Integer.parseInt(myInput.nextLine().trim());
                     
@@ -137,11 +137,11 @@ public class KelebogilePart1 {
                         messageAmount = true;
                     }
                     else{
-                        System.out.println(" Please enter a number greater than 0 ");
+                        System.out.println("Please enter a number greater than 0 ");
                     }
                 }
                 catch ( NumberFormatException e){
-                    System.out.println(" Please enter a valid number ");
+                    System.out.println("Please enter a valid number ");
                 }  
             }
             
@@ -149,11 +149,11 @@ public class KelebogilePart1 {
             boolean correct = true;
             
             while(correct){
-                
-                System.out.println("\n 1) Send Messages ");
-                System.out.println(" 2) Send recently sent message ");
+                System.out.println("\n----- Message On Quick Chat -----");
+                System.out.println("\n1) Send Messages ");
+                System.out.println("2) Send recently sent message ");
                 System.out.println("3) Quit ");
-                System.out.println(" Select an option ");
+                System.out.print("Select an option: ");
                 
                 int option;
                 
@@ -169,7 +169,7 @@ public class KelebogilePart1 {
                     case 1:{
                         
                         if (numMessagesEntered >= messageMax){
-                            System.out.println("All"+ messageMax + "messages have be entered ");
+                            System.out.println("All "+ messageMax + " messages have be entered ");
                             break;
                         }
                         
@@ -177,7 +177,7 @@ public class KelebogilePart1 {
                         boolean isRecipientValid = false;
                         
                         do{
-                            System.out.println("\n Enter recipients cellphone number e.g.(+27834569922): ");
+                            System.out.print("\nEnter recipients cellphone number e.g.(+27834569922): ");
                             recipient = myInput.nextLine();
                             
                             Messages temp = new Messages(recipient,"temp");
@@ -191,14 +191,14 @@ public class KelebogilePart1 {
                         Messages message;
                         
                         while(true){
-                            System.out.println("Enter message ( 250 characters max): ");
+                            System.out.print("\nEnter message(250 characters max): ");
                             String text = myInput.nextLine();
                             
                             if(text.trim().isEmpty()){
-                                System.out.println(" The message cannot be empty ");
+                                System.out.println("The message cannot be empty ");
                             }
                             else if(text.length()> Messages.maxCharacter){
-                                System.out.println(" Plese enter a message of less than 250 characters ");
+                                System.out.println("Plese enter a message of less than 250 characters ");
                                 System.out.println(new Messages(recipient, text).checkMessageLength());
                             }
                             else {
@@ -213,10 +213,11 @@ public class KelebogilePart1 {
                         int choice;
                         
                         do{
-                            System.out.println("\n 1) Send Message ");
-                            System.out.println(" 2) Disregard message ");
-                            System.out.println(" 3) Store Message to send later ");
-                            System.out.println(" Select an option ");
+                            System.out.println("\n-----WHAT DO YOU WANT TO DO WITH THE MESSAGE-----");
+                            System.out.println("\n1) Send Message ");
+                            System.out.println("2) Disregard message ");
+                            System.out.println("3) Store Message to send later ");
+                            System.out.print("Select an option: ");
                             
                             try{
                                 choice = Integer.parseInt(myInput.nextLine().trim());
@@ -257,7 +258,7 @@ public class KelebogilePart1 {
             
             System.out.println("\n-------- Messages Sent :) --------");
             System.out.println(Messages.printMessages());
-            System.out.println("\n Total messages sent: " + Messages.returnTotalMessages());
+            System.out.println("\nTotal messages sent: " + Messages.returnTotalMessages());
         }
         myInput.close();
     }   
