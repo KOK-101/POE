@@ -75,4 +75,54 @@ public class Messages {
         return "Message exceeds 250 characters by "+ (length - maxCharacter)
                 +", please reduce the number of characters ";
     }
+    
+    public String messageHashCreate(){
+        
+        String[] words = messageText.trim().split("\\s+");
+        String first = words[0].replaceAll("[^A-Za-z0-9]", "");
+        String last = words[words.length - 1].replaceAll("[^A-Za-z0-9]", "");
+        
+        return (messageID.substring(0, 2)+ ":" + messageNum + ":"+ first + last).toUpperCase();
+    }
+    
+    public String sentMessages(int choice){
+        
+        switch(choice){
+            case 1:
+                sentMessages.add(this);
+                numOfSentMessages++;
+                return " Message successfully sent :) ";
+                
+            case 2:
+                return " Press 0 to delete the message ";
+                
+            case 3:
+                storeMessage();
+                return " Message successfully stored :) ";
+               
+            default:
+                return " Your choice is invalid ";
+        }
+    }
+    
+    public String getDetails(){
+        
+        return " Message ID: " + messageID +"\n Message Hash: "+ messageHash
+                +"\n Recipient: "+ recipient +"\n Message: "+ messageText;
+    }
+    
+    public static String printMessages(){
+        
+        if(sentMessages.isEmpty()){
+            return " No messages have been sent ";
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        for(Message m: sentMessages){
+            sb.append(m.getDetails()).append("\n\n");
+        }
+    }
+    
+    
+    
 }
