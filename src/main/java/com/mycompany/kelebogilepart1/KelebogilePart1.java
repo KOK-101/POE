@@ -238,10 +238,26 @@ public class KelebogilePart1 {
                             }
                         }
                         
+                        numMessagesEntered++; 
+                        break;
                         
                     }
+                    
+                    case 2:
+                        System.out.println("Coming Soon ");
+                        
+                    case 3:
+                        correct = false;
+                        break;
+                        
+                    default:
+                        System.out.println("Option invalid, Please select between option 1, 2 or 3 ");
                 }
             }
+            
+            System.out.println("\n-------- Messages Sent :) --------");
+            System.out.println(Messages.printMessages());
+            System.out.println("\n Total messages sent: " + Messages.returnTotalMessages());
         }
         myInput.close();
     }   
