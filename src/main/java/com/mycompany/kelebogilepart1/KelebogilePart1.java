@@ -130,7 +130,117 @@ public class KelebogilePart1 {
             while(!messageAmount){
                 
                 System.out.print("\n How many messages do you want to enter?: ");
+                try {
+                    messageMax = Integer.parseInt(myInput.nextLine().trim());
+                    
+                    if ( messageMax > 0){
+                        messageAmount = true;
+                    }
+                    else{
+                        System.out.println(" Please enter a number greater than 0 ");
+                    }
+                }
+                catch ( NumberFormatException e){
+                    System.out.println(" Please enter a valid number ");
+                }  
+            }
+            
+            int numMessagesEntered = 0;
+            boolean correct = true;
+            
+            while(correct){
                 
+                System.out.println("\n 1) Send Messages ");
+                System.out.println(" 2) Send recently sent message ");
+                System.out.println("3) Quit ");
+                System.out.println(" Select an option ");
+                
+                int option;
+                
+                try {
+                    option = Integer.parseInt(myInput.nextLine().trim());
+                }
+                catch(NumberFormatException e) {
+                    option = -1;
+                }
+                
+                switch (option){
+                    
+                    case 1:{
+                        
+                        if (numMessagesEntered >= messageMax){
+                            System.out.println("All"+ messageMax + "messages have be entered ");
+                            break;
+                        }
+                        
+                        String recipient;
+                        boolean isRecipientValid = false;
+                        
+                        do{
+                            System.out.println("\n Enter recipients cellphone number e.g.(+27834569922): ");
+                            recipient = myInput.nextLine();
+                            
+                            Messages temp = new Messages(recipient,"temp");
+                            
+                            System.out.println(temp.checkRecipientNumber());
+                            isRecipientValid = Login.checkCellPhoneNumber(recipient);
+                        }
+                        
+                        while(!isRecipientValid);
+                        
+                        Messages message;
+                        
+                        while(true){
+                            System.out.println("Enter message ( 250 characters max): ");
+                            String text = myInput.nextLine();
+                            
+                            if(text.trim().isEmpty()){
+                                System.out.println(" The message cannot be empty ");
+                            }
+                            else if(text.length()> Messages.maxCharacter){
+                                System.out.println(" Plese enter a message of less than 250 characters ");
+                                System.out.println(new Messages(recipient, text).checkMessageLength());
+                            }
+                            else {
+                                message = new Messages(recipient, text);
+                                System.out.println(message.checkMessageLength());
+                                break;
+                            }
+                        }
+                        
+                        System.out.println(message.getMessageIDStatus());
+                        
+                        int choice;
+                        
+                        do{
+                            System.out.println("\n 1) Send Message ");
+                            System.out.println(" 2) Disregard message ");
+                            System.out.println(" 3) Store Message to send later ");
+                            System.out.println(" Select an option ");
+                            
+                            try{
+                                choice = Integer.parseInt(myInput.nextLine().trim());
+                            }
+                            catch (NumberFormatException e){
+                                choice = -1;
+                            }
+                        }
+                        while (choice < 1 || choice > 3);
+                        
+                        System.out.print(message.sentMessages(choice));
+                        
+                        if(choice == 1){
+                            System.out.println("\n"+ message.getDetails());
+                        }
+                        else if(choice == 2){
+                            if (myInput.nextLine().trim().equals("0")){
+                                System.out.println("Message Deleted");
+                            }
+                        }
+                        
+                        
+                    }
+                }
             }
         }
         myInput.close();
