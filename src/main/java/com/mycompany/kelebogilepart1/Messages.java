@@ -190,5 +190,11 @@ public class Messages {
         return text.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "\\r");
     }
     
-    
+    //method used by unit testing to reset the sent message counter to 0
+    public static void resetMessages(){
+        
+        sentMessages.clear();
+        storedMessages.clear();
+        numOfSentMessages = 0;
+    }
 }
