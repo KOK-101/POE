@@ -122,8 +122,10 @@ public class KelebogilePart1 {
             System.out.println(register.returnLoginStatus());
             }
            
+            //starting a quick chat
             System.out.println("\n--------Welcome to QuickChat--------");
             
+            //creating loops to ensure that quick chat only works when they have loggedin
             int messageMax = 0;
             boolean messageAmount = false;
             
@@ -145,6 +147,7 @@ public class KelebogilePart1 {
                 }  
             }
             
+            //creating loops for a menu selection the user needs to make
             int numMessagesEntered = 0;
             boolean correct = true;
             
@@ -173,6 +176,7 @@ public class KelebogilePart1 {
                             break;
                         }
                         
+                        // continue asking until it is valid
                         String recipient;
                         boolean isRecipientValid = false;
                         
@@ -187,9 +191,11 @@ public class KelebogilePart1 {
                         }
                         
                         while(!isRecipientValid);
-                        
+                       
+                        //will hold the message once it is valid
                         Messages message;
                         
+                        //loops to ask the user to enter the message
                         while(true){
                             System.out.print("\nEnter message(250 characters max): ");
                             String text = myInput.nextLine();
@@ -208,10 +214,12 @@ public class KelebogilePart1 {
                             }
                         }
                         
+                        //outputting th message ID
                         System.out.println(message.getMessageIDStatus());
                         
                         int choice;
                         
+                        //looping for menu selection
                         do{
                             System.out.println("\n-----WHAT DO YOU WANT TO DO WITH THE MESSAGE-----");
                             System.out.println("\n1) Send Message ");
@@ -226,8 +234,11 @@ public class KelebogilePart1 {
                                 choice = -1;
                             }
                         }
+                        
+                        //checking if the choice is below 1 or greate than 3
                         while (choice < 1 || choice > 3);
                         
+                        //doing the choice
                         System.out.print(message.sentMessages(choice));
                         
                         if(choice == 1){
@@ -239,13 +250,16 @@ public class KelebogilePart1 {
                             }
                         }
                         
+                        //Counting towards the limit of messages
                         numMessagesEntered++; 
                         break;
                         
                     }
                     
+                    
                     case 2:
                         System.out.println("Coming Soon ");
+                        break;
                         
                     case 3:
                         correct = false;
@@ -256,6 +270,7 @@ public class KelebogilePart1 {
                 }
             }
             
+            //outpting the messages and its codes and the total number of messages sent
             System.out.println("\n-------- Messages Sent :) --------");
             System.out.println(Messages.printMessages());
             System.out.println("\nTotal messages sent: " + Messages.returnTotalMessages());
